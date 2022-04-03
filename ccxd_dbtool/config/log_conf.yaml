@@ -1,0 +1,31 @@
+version: 1
+
+disable_existing_loggers: False
+
+formatters:
+  simple:
+    format: "%(asctime)s - %(name)s: %(message)s"
+  extended:
+    format: "%(asctime)s - %(filename)s:%(lineno)d - %(name)s - [%(levelname)s]: %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: extended
+
+  file_handler:
+    class: logging.FileHandler
+    level: DEBUG
+    filename: console.log
+    formatter: extended
+
+loggers:
+  dev:
+    handlers: [console, file_handler]
+    propagate: False
+  test:
+    handlers: [console,file_handler]
+root:
+  level: DEBUG
+  handlers: [console,file_handler]
